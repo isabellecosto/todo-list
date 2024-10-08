@@ -1,2 +1,0 @@
-// Este arquivo é o que ficará na seção de adicionar tarefa
-// Layout: Input do tipo texto e do lado um botão de adicionar, ao clicar no botão deve adicionar a tarefa na lista e no array de tarefas pendentes, o input deve receber mais de 5 caracteres e no máximo 30 caracteres
