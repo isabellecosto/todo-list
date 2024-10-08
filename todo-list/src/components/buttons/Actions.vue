@@ -1,1 +1,0 @@
-// Este arquivo será responsável por tratar de TODOS os botões disponíveis na aplicação

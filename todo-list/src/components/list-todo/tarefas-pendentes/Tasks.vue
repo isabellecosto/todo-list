@@ -1,1 +1,0 @@
-// Este arquivo ficará responsável por todas as tarefas
