@@ -1,0 +1,1 @@
+// Lógica: Quando uma tarefa for finalizada, essa tarefa sairá do array de tarefas pendentes e entrará no array de tarefas concluídas, quando isso ocorrer a tarefa concluída deve aparecer com um traço no seu título, podendo ser deletada, quando for deletada a tarefa sairá do array de tarefas concluídas.
