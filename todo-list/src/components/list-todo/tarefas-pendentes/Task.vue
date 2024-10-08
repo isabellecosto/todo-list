@@ -1,0 +1,1 @@
+// Este arquivo ficará responsável por uma única tarefa, como há uma padronização será só necessário repetir
