@@ -5,6 +5,10 @@ const props = defineProps({
     todos: {
         type: Array,
         required: true
+    },
+    nextId: {
+      type: Number,
+      required: true
     }
 });
 const emit = defineEmits();
@@ -14,7 +18,7 @@ const newTask = ref('');
 const addTarefa = () => {
   if (newTask.value.trim() !== '') {
     const novaTarefa = {
-        id: Date.now(),
+        id: props.nextId,
         title: newTask.value,
         completed: false
     };
