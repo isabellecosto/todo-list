@@ -1,1 +1,0 @@
-// Aqui vai ficar as funções de add, delete, edit, info e localStorage

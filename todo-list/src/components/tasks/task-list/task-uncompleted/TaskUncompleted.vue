@@ -1,9 +1,10 @@
 <script setup>
 import { defineProps, computed } from 'vue';
+import EditButton from '../../../buttons/edit-button/EditButton.vue';
 
 const props = defineProps({
     todos: {
-        type: Array,
+        type: Object,
         required: true
     }
 });
@@ -11,6 +12,7 @@ const props = defineProps({
 const tarefasPendentes = computed(() => {
     return props.todos.data.filter(todo => !todo.completed);
 });
+
 </script>
 
 <template>
@@ -22,7 +24,8 @@ const tarefasPendentes = computed(() => {
         :key="todo.id || index" 
     >
         <input type="checkbox" v-model="todo.completed">
-        {{ todo.title }}{{ todo.id }}
+        {{ todo.title }}
+        <EditButton :todo-id="todo.id" @edit-button="$emit('edit-task', $event)" />
     </div>
 </div>
 </template>

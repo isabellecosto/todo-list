@@ -2,10 +2,9 @@
 import { computed, defineProps } from 'vue';
 import DeleteButton from '../../../buttons/delete-button/DeleteButton.vue';
 
-
 const props = defineProps({
   todos: {
-    type: Array,
+    type: Object,
     required: true
   }
 });
@@ -23,10 +22,7 @@ const tarefasCompletadas = computed(() => {
       :key="todo.id" 
     >
       <span style="text-decoration: line-through;">{{ todo.title }}</span>
-      <DeleteButton :todos="todos" @delete-button ="(id) => $emit('delete-task', id)" />
+      <DeleteButton :todo-id="todo.id" @delete-button="$emit('delete-task', $event)" />
     </div>
   </div>
 </template>
-
-<style scoped>
-</style>

@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, onMounted, ref } from 'vue';
+import { reactive, onMounted } from 'vue';
 import TaskList from './components/tasks/task-list/TaskList.vue';
 import TaskForm from './components/tasks/task-form/TaskForm.vue';
 import { useLocalStorage } from './composable/local-storage/use-localstorage';
@@ -10,13 +10,21 @@ let todos = reactive({ data: [] });
 let nextId = 1
 
 const adicionarTarefa = (novaTarefa) => {
-  todos.data.push(novaTarefa);
-  setItemLocalStorage('newtask', JSON.stringify(todos.data));
   novaTarefa.id = nextId++
+  todos.data.unshift(novaTarefa);
+  setItemLocalStorage('newtask', JSON.stringify(todos.data));
 }
 
 const deletarTarefa = (id) => {
-  todos.data.value = todos.data.value.filter(task => task.id !== id);
+  const index = todos.data.findIndex(task => task.id === id);
+  if (index !== -1) {
+    todos.data.splice(index, 1);
+    setItemLocalStorage('newtask', JSON.stringify(todos.data))
+  }
+};
+
+const editarTarefa = (id) => {
+  return console.log(`botão funcionou! Tarefa ID: ${id}`)
 }
 
 const initData = () => {
@@ -37,7 +45,7 @@ onMounted(() => {
 <template>
   <div class="wrapper">
     <TaskForm :todos="todos" @nova-tarefa="adicionarTarefa" /> 
-    <TaskList :todos="todos" @delete-task="deletarTarefa"/>
+    <TaskList :todos="todos" @delete-task="deletarTarefa" @edit-tasks="editarTarefa"/>
   </div>
 </template>
 
