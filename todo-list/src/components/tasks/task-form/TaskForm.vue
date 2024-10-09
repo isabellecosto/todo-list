@@ -3,12 +3,12 @@ import { defineEmits, defineProps, ref } from 'vue';
 
 const props = defineProps({
     todos: {
-        type: Array,
+        type: Object,
         required: true
     },
     nextId: {
       type: Number,
-      required: true
+      required: false
     }
 });
 const emit = defineEmits();

@@ -1,19 +1,20 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue';
 
-const emits = defineEmits()
 const props = defineProps({
-    todos: {
-        type: Object,
+    todoId: {
+        type: Number,
         required: true
     }
 });
 
-function deleteTask() {
-    emits('delete-button', props.todos.id)
-}
+const emit = defineEmits();
 
+function deleteTask() {
+    emit('delete-button', props.todoId);
+}
 </script>
+
 <template>
     <button @click="deleteTask">Deletar</button>
 </template>
