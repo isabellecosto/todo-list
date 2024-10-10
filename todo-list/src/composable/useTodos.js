@@ -5,10 +5,15 @@ const { setItemLocalStorage, getItemLocalStorage } = useLocalStorage();
 
 let todos = reactive({ data: [] });
 let nextId = 1
+let recycleIds = []
 const newTitle = ref('')
 
 const adicionarTarefa = (novaTarefa) => {
-  novaTarefa.id = nextId++
+  if(recycleIds.length > 0) {
+    novaTarefa.id = recycleIds.shift()
+  }else {
+    novaTarefa.id = nextId++
+  }
   todos.data.unshift(novaTarefa);
   setItemLocalStorage('newtask', JSON.stringify(todos.data));
 }
@@ -16,12 +21,14 @@ const adicionarTarefa = (novaTarefa) => {
 const deletarTarefa = (id) => {
   const index = todos.data.findIndex(task => task.id === id);
   if (index !== -1) {
-    todos.data.splice(index, 1);
+    todos.data.splice(index, 1)
+    recycleIds.push(id)
     setItemLocalStorage('newtask', JSON.stringify(todos.data))
   }
 };
 
 const editarTarefa = (id) => {
+  const newTitle = prompt('Coloque seu novo título')
   const index = todos.data.findIndex(task => task.id === id);
   if (index !== -1) {
     todos.data[index] = { ...todos.data[index], title: newTitle };
